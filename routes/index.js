@@ -4,8 +4,19 @@ const applicationRoutes = require('./applicationRoutes');
 const { sendContactEmail } = require('../controllers/emailController');
 const transporter = require('../config/email');
 
+// Debug middleware to log all incoming requests
+router.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 router.use('/applications', applicationRoutes);
 router.post('/contact', sendContactEmail);
+
+// Test route for applications
+router.post('/applications/test', (req, res) => {
+  res.json({ message: 'Applications route is working!' });
+});
 
 router.get('/test-email', async (req, res) => {
   try {
