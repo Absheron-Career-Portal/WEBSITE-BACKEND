@@ -4,7 +4,7 @@ const express = require('express');
 const connectDB = require('./config/database');
 
 // CONTROLLER və MIDDLEWARE-lər
-const { submitApplication, getApplications } = require('./controllers/applicationController');
+const { submitApplication, getApplications } = require('./controllers/app  licationController');
 const { validateApplication } = require('./middleware/validation');
 const upload = require('./middleware/upload');
 const { sendContactEmail } = require('./controllers/emailController');

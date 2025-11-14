@@ -73,9 +73,10 @@ exports.submitApplication = async (req, res) => {
       </tr>
     `;
 
+    // Send to cv@absheronport.az
     const adminMailOptions = {
       from: process.env.SMTP_USER,
-      to: process.env.SMTP_USER,
+      to: process.env.ADMIN_EMAIL, // This will be cv@absheronport.az
       subject: `New Job Application: ${jobTitle}`,
       html: `
         <h2 style="color: #333; font-family: Arial, sans-serif;">Yeni namizəd müraciəti qəbul edilmişdir</h2>
@@ -87,27 +88,6 @@ exports.submitApplication = async (req, res) => {
         ? [{ filename: req.file.originalname, content: req.file.buffer }]
         : []
     };
-
-    // const userMailOptions = {
-    //   from: process.env.SMTP_USER,
-    //   to: email,
-    //   subject: 'Müraciətin Qəbulu',
-    //   html: `
-    //     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #000000;">
-    //       <h2 style="color: #0346B8;">Hörmətli namizəd,</h2>
-    //       <p>Müraciətiniz Abşeron Logistika Mərkəzinin Karyera portalı vasitəsilə uğurla qəbul edilmişdir.</p>
-    //       <p>Bildirmək istəyirik ki, vakansiya üçün müraciət mərhələsi bitdikdən sonra bütün müraciətlər nəzərdən keçiriləcək. </p>
-    //       <p>Yalnız vakansiyanın tələblərinə uyğun hesab edilən namizədlərlə növbəti mərhələdə əlaqə saxlanılacaqdır. </p>
-    //       <p>Digər namizədlərin müraciətləri isə məlumat bazasında saxlanılaraq gələcək imkanlar üçün nəzərdən keçiriləcəkdir. </p>
-    //       <p>Mərkəzimizə göstərdiyiniz marağa görə təşəkkür edirik.</p>
-    //       <p> </p>
-    //       <p>Hörmətlə,</p>
-    //       <p>Abşeron Logistika Mərkəzi</p>
-    //       <p>Vakansiyalardan bagli bizi Karyera portali ve ya sosial sebekelerden izleye bilersiz: <p>
-    //       // two icon navigate to links  links
-    //     </div>
-    //   `
-    // };
 
     const userMailOptions = {
       from: process.env.SMTP_USER,
@@ -138,7 +118,6 @@ exports.submitApplication = async (req, res) => {
                       </p>
                     </td>
                   </tr>
-                  
                   
                   <tr>
                     <td style="padding: 10px 0;">
