@@ -11,6 +11,8 @@ const { sendContactEmail } = require('./controllers/emailController');
 const transporter = require('./config/email');
 
 // === DB-ə qoşulma ===
+console.log('DEBUG connectDB typeof:', typeof connectDB);
+
 connectDB();
 
 const app = express();
