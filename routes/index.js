@@ -1,19 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const applicationRoutes = require('./applicationRoutes');
-const { sendContactEmail } = require('../controllers/emailController');
-const transporter = require('../config/email');
-
-router.use('/applications', applicationRoutes);
-router.post('/contact', sendContactEmail);
-
 router.get('/test-email', async (req, res) => {
   try {
     const testMailOptions = {
-      from: process.env.SMTP_USER,
+      from: `"Career Portal" <${process.env.SMTP_USER}>`,
       to: process.env.ADMIN_EMAIL, 
       subject: 'Test Email from Backend',
-      text: 'This is a test email from your backend server.'
+      text: 'This is a test email from your backend server using Gmail.'
     };
     
     await transporter.sendMail(testMailOptions);
@@ -23,5 +14,3 @@ router.get('/test-email', async (req, res) => {
     res.status(500).json({ success: false, error: 'Failed to send test email' });
   }
 });
-
-module.exports = router;
